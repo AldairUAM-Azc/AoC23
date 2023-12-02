@@ -28,7 +28,7 @@ public class Day1Aldair {
         FileReader fr;
         BufferedReader br;
         try {
-            fr = new FileReader("/workspaces/AoC23/day1/test.txt");
+            fr = new FileReader("/workspaces/AoC23/day1/aldair_input_day1.txt");
             br = new BufferedReader(fr);
             int sum = 0;
             while (br.ready()) {
