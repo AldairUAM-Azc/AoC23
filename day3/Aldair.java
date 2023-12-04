@@ -1,8 +1,13 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 class Aldair {
+    private static boolean symbolAroundNumber(int i, int j) {
+        return true;
+    }
+
     public static boolean charIsDigit(char c) {
         return c == '0'
                 || c == '1'
@@ -16,41 +21,44 @@ class Aldair {
                 || c == '9';
     }
 
-    public static boolean charIsSymbol(char c){
+    public static boolean charIsSymbol(char c) {
         return c == '-' || c == '=' || c == '*' || c == '!' || c == '%' || c == '$' || c == '&' || c == '#';
     }
 
     public static void main(String[] args) {
         try {
             FileReader fr = new FileReader("/workspaces/AoC23/day3/input.txt");
-            BufferedReader br = new BufferedReader(fr);
-            char[] lineTop = br.readLine().toCharArray();
-            // char[] lineMid = br.readLine().toCharArray();
-            // char[] lineBot = br.readLine().toCharArray();
-            ArrayList<String> numsCaptured = new ArrayList<>();
-            String capturedNumberString = "";
-            boolean startNumber = false;
-            for (int i = 0; i < lineTop.length; i++) {
-                if (charIsDigit(lineTop[i])) {
-                    startNumber = true;
-                    capturedNumberString += lineTop[i];
-                    // edge case, number ends in line last character
-                    if (i == lineTop.length - 1) {
-                        numsCaptured.add(capturedNumberString);
-                        capturedNumberString = "";
-                    }
-                } else if (startNumber && !charIsDigit(lineTop[i])) {
-                    numsCaptured.add(capturedNumberString);
-                    capturedNumberString = "";
-                    startNumber = false;
-                }
-            }
-            System.out.println(numsCaptured);
+            BufferedReader br = new BufferedReader(fr);  
+            List<String> lines = br.lines().collect(Collectors.toList());
+            System.out.println(lines);
+            // char[] line = br.readLine().toCharArray();
+            // int i = 0;
+            // int j = 0;
+            // while (i < line.length - 1) {
+            //     // get index of first and last digit of a number in line
+            //     if (charIsDigit(line[i])) {
+            //         while (charIsDigit(line[j]) && j < line.length - 1) {
+            //             j++;
+            //         }
+            //         if (j < line.length) {
+            //             j--;
+            //         }
+            //     } else {
+            //         j = i;
+            //     }
+            //     // search the symbol around the number.
+            //     // if (symbolAroundNumber(i, j)) {
+            //     System.out.println(i + j);
+            //     // }
+            // }
             fr.close();
             br.close();
             System.out.println("Answer: ");
-        } catch (Exception e) {
+        } catch (
+
+        Exception e) {
             System.out.println(e);
         }
+
     }
 }
